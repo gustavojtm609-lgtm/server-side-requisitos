@@ -11,6 +11,12 @@ import { ProfilePage } from './pages/ProfilePage.jsx';
 import { RankingPage } from './pages/RankingPage.jsx';
 import { RegisterPage } from './pages/RegisterPage.jsx';
 import { ResultPage } from './pages/ResultPage.jsx';
+import { QuestionsAdminPage } from './pages/QuestionsAdminPage.jsx';
+
+function AdminOnly({ children }) {
+  const { user } = useAuth();
+  return user?.role === 'ADMIN' ? children : <Navigate to="/" replace />;
+}
 
 function PublicOnly({ children }) {
   const { isAuthenticated, loading } = useAuth();
@@ -38,6 +44,7 @@ export default function App() {
           <Route path="resultado/:sessionId" element={<ResultPage />} />
           <Route path="ranking" element={<RankingPage />} />
           <Route path="perfil" element={<ProfilePage />} />
+          <Route path="admin/perguntas" element={<AdminOnly><QuestionsAdminPage /></AdminOnly>} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Route>

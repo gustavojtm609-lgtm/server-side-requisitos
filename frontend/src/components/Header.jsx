@@ -1,4 +1,4 @@
-import { BarChart3, BookOpenCheck, LogOut, UserRound } from 'lucide-react';
+import { BarChart3, BookOpenCheck, ListChecks, LogOut, UserRound } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
 import { initials } from '../utils/format.js';
@@ -36,6 +36,12 @@ export function Header() {
             <UserRound size={18} aria-hidden="true" />
             <span>Perfil</span>
           </NavLink>
+          {user?.role === 'ADMIN' && (
+            <NavLink to="/admin/perguntas">
+              <ListChecks size={18} aria-hidden="true" />
+              <span>Perguntas</span>
+            </NavLink>
+          )}
         </nav>
 
         <div className="user-menu">
