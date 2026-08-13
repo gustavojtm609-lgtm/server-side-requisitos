@@ -98,7 +98,7 @@ export function HomePage() {
           <div className="resume-icon"><RotateCcw size={22} aria-hidden="true" /></div>
           <div>
             <span className="eyebrow">Partida em andamento</span>
-            <strong>{activeGame.session.configuration.theme.name} · {difficultyLabels[activeGame.session.difficulty]}</strong>
+            <strong>{activeGame.session.configuration?.theme?.name || 'Quiz de requisitos'} · {difficultyLabels[activeGame.session.difficulty]}</strong>
           </div>
           <button className="secondary-button" type="button" onClick={() => navigate('/jogo', { state: { game: activeGame } })}>
             Continuar <ArrowRight size={17} aria-hidden="true" />

@@ -120,7 +120,7 @@ export function GamePage() {
           <ChevronLeft size={18} aria-hidden="true" /> Abandonar
         </button>
         <div className="game-context">
-          <span><Layers3 size={16} /> {session.configuration.theme.name}</span>
+          <span><Layers3 size={16} /> {session.configuration?.theme?.name || 'Quiz de requisitos'}</span>
           <span className={`difficulty-pill difficulty-${session.difficulty.toLowerCase()}`}>{difficultyLabels[session.difficulty]}</span>
         </div>
         <span className="score-chip"><Star size={17} fill="currentColor" /> {Number(session.score).toLocaleString('pt-BR')} pts</span>

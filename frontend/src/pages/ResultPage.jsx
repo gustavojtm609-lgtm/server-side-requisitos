@@ -5,7 +5,7 @@ import { getApiErrorMessage } from '../api/client.js';
 import { gameApi } from '../api/game.js';
 import { ErrorMessage } from '../components/ErrorMessage.jsx';
 import { PageLoader } from '../components/PageLoader.jsx';
-import { formatDuration, requirementLabels } from '../utils/format.js';
+import { difficultyLabels, formatDuration, requirementLabels } from '../utils/format.js';
 
 export function ResultPage() {
   const { sessionId } = useParams();
@@ -39,7 +39,7 @@ export function ResultPage() {
         <div className="result-badge"><Trophy size={34} aria-hidden="true" /></div>
         <span className="eyebrow">Partida concluída</span>
         <h1>{excellent ? 'Excelente classificação!' : 'Bom treino — siga evoluindo!'}</h1>
-        <p>{session.configuration.theme.name} · {session.configuration.phase.name}</p>
+        <p>{session.configuration?.theme?.name || 'Quiz de requisitos'} · {session.configuration?.phase?.name || difficultyLabels[session.difficulty]}</p>
         <strong className="result-score">{Number(session.score).toLocaleString('pt-BR')} <small>pontos</small></strong>
       </section>
 

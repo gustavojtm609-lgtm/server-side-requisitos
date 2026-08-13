@@ -79,6 +79,19 @@ export default function defineGameSession(sequelize) {
         type: DataTypes.JSON,
         allowNull: false,
         field: 'configuration_snapshot',
+        get() {
+          const value = this.getDataValue('configurationSnapshot');
+
+          if (typeof value !== 'string') {
+            return value;
+          }
+
+          try {
+            return JSON.parse(value);
+          } catch {
+            return value;
+          }
+        },
       },
       startedAt: {
         type: DataTypes.DATE,
